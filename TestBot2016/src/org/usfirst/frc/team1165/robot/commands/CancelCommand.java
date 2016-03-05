@@ -13,7 +13,7 @@ public class CancelCommand extends Command
 	public CancelCommand()
 	{
 		// Use requires() here to declare subsystem dependencies
-		//requires(Robot.arm);
+		requires(Robot.arm);
 		//requires(Robot.linearActuator);
 		requires(Robot.robotDrive);
 		requires(Robot.winch);

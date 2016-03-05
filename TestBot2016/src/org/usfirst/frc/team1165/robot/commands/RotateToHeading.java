@@ -57,22 +57,19 @@ public class RotateToHeading extends Command
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
-		if (null != brakeOffsetKey)
+		/*if (null != brakeOffsetKey)
 		{
 			brakeOffset = Math.abs(SmartDashboard.getNumber(brakeOffsetKey));
 			targetHeading = SmartDashboard.getNumber(targetHeadingKey);
 			rotateMagnitude = Math.abs(SmartDashboard.getNumber(rotateMagnitudeKey));
 			creepMagnitude = Math.abs(SmartDashboard.getNumber(creepMagnitudeKey));
-		}
+		}*/
 		
 		Robot.gyroscope.resetGyro();
-				
 		// If our target is within braking range, do not start driving, 
 		// but creep to the target instead.
 		isCreeping = Math.abs(targetHeading) < brakeOffset;
-		
 		sign = targetHeading < 0 ? -1 : 1;
-		
 		previousHeading = 0;
 	}
 

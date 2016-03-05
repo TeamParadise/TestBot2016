@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team1165.robot.commands.DoNothing;
+import org.usfirst.frc.team1165.robot.subsystems.AbsoluteEncoder;
 import org.usfirst.frc.team1165.robot.subsystems.Camera;
 import org.usfirst.frc.team1165.robot.subsystems.Camera.CameraMode;
 //import org.usfirst.frc.team1165.robot.commands.LowBarAutonomous;
@@ -38,13 +39,13 @@ import org.usfirst.frc.team1165.robot.subsystems.Winch;
 public class Robot extends IterativeRobot
 {
 	public static final DriveTrain robotDrive = new DriveTrain();
-//	public static final LinearActuatorSensor linearActuatorSensor = new LinearActuatorSensor();
+	//public static final LinearActuatorSensor linearActuatorSensor = new LinearActuatorSensor();
 	//public static final LinearActuatorPID linearActuator = new LinearActuatorPID();
-//	public static final MoveServo moveServo = new MoveServo();
-//	public static final Shooter shooter = new Shooter();
+	//public static final MoveServo moveServo = new MoveServo();
+	//public static final Shooter shooter = new Shooter();
 	public static final Winch winch = new Winch();
 	public static final ManipulationArm arm = new ManipulationArm();
-//	public static final AbsoluteEncoder absoluteEncoder = new AbsoluteEncoder();
+	public static final AbsoluteEncoder absoluteEncoder = new AbsoluteEncoder();
 	public static final Gyroscope gyroscope = new Gyroscope();
 	public static Camera camera;
 	/*
@@ -132,5 +133,4 @@ public class Robot extends IterativeRobot
 	{
 		LiveWindow.run();
 	}
-
 }

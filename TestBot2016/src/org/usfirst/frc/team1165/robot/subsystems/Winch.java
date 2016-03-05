@@ -31,7 +31,6 @@ public class Winch extends Subsystem
     }
     public void respoolWinch()
     {
-    	winchTalon.set(-0.5728);
+    	winchTalon.set(-0.3141592691);
     }
 }
-

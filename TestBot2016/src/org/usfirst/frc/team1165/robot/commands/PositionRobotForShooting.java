@@ -1,17 +1,19 @@
 package org.usfirst.frc.team1165.robot.commands;
 
-import org.usfirst.frc.team1165.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-
-public class DisplayEncoder extends Command
+/**
+ *
+ */
+public class PositionRobotForShooting extends Command
 {
-
-	public DisplayEncoder()
+	NetworkTable table;
+	double values[] = new double[0];
+	public PositionRobotForShooting()
 	{
-		// Use requires() here to declare subsystem dependencies
-		requires(Robot.absoluteEncoder);
+		
 	}
 
 	// Called just before this Command runs the first time
@@ -22,7 +24,14 @@ public class DisplayEncoder extends Command
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		Robot.absoluteEncoder.report();
+		table = NetworkTable.getTable("GRIP/myContoursReport");
+		double x[] = table.getNumberArray("centerX");
+		double y[] = table.getNumberArray("centerY");
+		for(double i:x)
+		{
+			SmartDashboard.putNumber("X ", x[(int) i]);
+			SmartDashboard.putNumber("Y", y[(int)i]);
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

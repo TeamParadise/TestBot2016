@@ -9,6 +9,7 @@ import org.usfirst.frc.team1165.robot.commands.DriveStraight;
 //import org.usfirst.frc.team1165.robot.commands.DriveUnderPortcullis;
 import org.usfirst.frc.team1165.robot.commands.FlipDriveDirection;
 import org.usfirst.frc.team1165.robot.commands.FlipRobotFront;
+import org.usfirst.frc.team1165.robot.commands.ResetEncoder;
 import org.usfirst.frc.team1165.robot.commands.RespoolWinch;
 import org.usfirst.frc.team1165.robot.commands.StartWinch;
 //import org.usfirst.frc.team1165.robot.commands.PickupBall;
@@ -59,6 +60,7 @@ public class OI
 		SmartDashboard.putBoolean(RobotMap.EnableRespoolWinch, false);
 		//SmartDashboard.putData(new SetLinearActuatorSetpoint(RobotMap.linearActuatorSetpointKey));
 		SmartDashboard.putNumber("Push Time", 0.5);
+		SmartDashboard.putData(new ResetEncoder());
 		
 		respoolWinch.whenPressed(new RespoolWinch());
 		respoolWinch.whenReleased(new StopWinch());
