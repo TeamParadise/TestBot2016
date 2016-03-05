@@ -126,7 +126,7 @@ public class Camera extends Subsystem implements Runnable
 		desiredCamera = this.cameraNames.get(currentSessionIndex);
 		startAcquisition(currentSessionIndex);
 				
-		CameraServer.getInstance().setQuality(100);
+		CameraServer.getInstance().setQuality(80);
 		
 		if (mode == CameraMode.THREAD)
 		{
