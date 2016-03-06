@@ -10,7 +10,8 @@ public class ShootAtHighGoal extends CommandGroup {
     
     public  ShootAtHighGoal() 
     {
-    	addSequential(new SetLinearActuatorSetpoint(1.5));
+    	addSequential(new PositionRobotForShooting());
+    	//addSequential(new SetLinearActuatorSetpoint(1.5));
     	addParallel(new PushBallToShooter(5));
     	addSequential(new SpinShooterWheelsOut(-5000));//Gives right wheel negative rpm
     	//addSequential(new WaitCommand(0.5));
