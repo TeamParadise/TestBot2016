@@ -42,7 +42,7 @@ public class PositionRobotForShooting extends Command
 		table = NetworkTable.getTable("GRIP/myContoursReport");
 		double x[] = table.getNumberArray("centerX");
 		double y[] = table.getNumberArray("centerY");
-		if (x.length < 1)
+		if (x.length == 1)
 		{
 			for (double i : x)
 			{
