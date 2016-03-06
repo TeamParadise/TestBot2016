@@ -54,5 +54,4 @@ public class OperateLinearActuatorWithGamepad extends Command
 	{
 		Robot.linearActuator.setSpeed(0);
 	}
-}
-*/
+}*/

@@ -44,5 +44,4 @@ public class ReportLinearActuatorPosition extends Command
 	protected void interrupted()
 	{
 	}
-}
-*/
+}*/

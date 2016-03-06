@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-*//**
+
  * PID subsystem for the AndyMark am-3076 linear actuator.
- *//*
+ 
 public class LinearActuatorPID extends PIDSubsystem
 {
 	private CANTalon motor;
@@ -107,11 +107,10 @@ public class LinearActuatorPID extends PIDSubsystem
 	
 	*//**
 	 * Called by the PID controller with its current calculated output value,
-	 * which is used to set the motor direction and speed.
+	  which is used to set the motor direction and speed.
 	 *//*
 	protected void usePIDOutput(double output)
 	{
 		setSpeed(output);
 	}
-}
-*/
+}*/

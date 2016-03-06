@@ -70,5 +70,4 @@ public class LinearActuatorSensor extends Subsystem
 			SmartDashboard.putBoolean("On Target", Robot.linearActuator.onTarget());
 		}
 	}
-}
-*/
+}*/

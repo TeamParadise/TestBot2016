@@ -9,6 +9,7 @@ import org.usfirst.frc.team1165.robot.commands.DriveStraight;
 //import org.usfirst.frc.team1165.robot.commands.DriveUnderPortcullis;
 import org.usfirst.frc.team1165.robot.commands.FlipDriveDirection;
 import org.usfirst.frc.team1165.robot.commands.FlipRobotFront;
+import org.usfirst.frc.team1165.robot.commands.PositionRobotForShooting;
 import org.usfirst.frc.team1165.robot.commands.ResetEncoder;
 import org.usfirst.frc.team1165.robot.commands.RespoolWinch;
 import org.usfirst.frc.team1165.robot.commands.StartWinch;
@@ -40,8 +41,9 @@ public class OI
 	public final JoystickButton servoButton 		= new JoystickButton(gamepad, RobotMap.SERVO_BUTTON_NUMBER);
 	public final JoystickButton pickupButton 		= new JoystickButton(gamepad,RobotMap.PICKUP_BUTTON_NUMBER);
 	public final JoystickButton pushOutButton 		= new JoystickButton(gamepad,RobotMap.SHOOT_AT_HIGH_GOAL_BUTTON_NUMBER);
-	public final JoystickButton climbTower 		= new JoystickButton(gamepad, RobotMap.WINCH_BUTTON);
+	public final JoystickButton climbTower 			= new JoystickButton(gamepad, RobotMap.WINCH_BUTTON);
 	public final JoystickButton cancelButton 		= new JoystickButton(gamepad,RobotMap.CANCEL_BUTTON);
+	public final JoystickButton alignWithHighGoal	= new JoystickButton(gamepad,RobotMap.ALIGN_WITH_HIGH_GOAL_BUTTON);
 	public final JoystickButton flipDriveDirection 	= new JoystickButton(leftStick,1);
 	public final JoystickButton cameraButton 		= new JoystickButton(leftStick,2);
 	public final JoystickButton portcullisButton 	= new JoystickButton(leftStick,3);
@@ -79,6 +81,7 @@ public class OI
 		cancelButton.whenPressed(new CancelCommand());
 		//portcullisButton.whenPressed(new DriveUnderPortcullis());
 		//drawbridgeButton.whenPressed(new DriveOverDrawbridge());
+		alignWithHighGoal.whenPressed(new PositionRobotForShooting());
 	}
 	
 	public double getActuatorSpeed()
