@@ -85,14 +85,13 @@ public class PositionRobotForShooting extends Command
 			}
 			/*if (Math.abs(centerFrameY - currentY) >= offset)
 			{
+				currentActuatorPos = Robot.linearActuator.getPosition();
 				if (centerFrameY - currentY > 0)
 				{
-					currentActuatorPos = Robot.linearActuator.getPosition();
 					Robot.linearActuator.setSetpoint(currentActuatorPos-actuatorPosIncrement);
 				}
 				else if(centerFrameY - currentY < 0)
 				{
-					currentActuatorPos = Robot.linearActuator.getPosition();
 					Robot.linearActuator.setSetpoint(currentActuatorPos+actuatorPosIncrement);}
 			}
 			else
