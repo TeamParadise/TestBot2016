@@ -1,10 +1,7 @@
-/*package org.usfirst.frc.team1165.robot.commands;
+package org.usfirst.frc.team1165.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-*//**
- *
- *//*
 public class MoatRoughTerrainAutonomous extends CommandGroup
 {
 
@@ -14,4 +11,3 @@ public class MoatRoughTerrainAutonomous extends CommandGroup
 		addSequential(new DriveOverTerrain());
 	}
 }
-*/

@@ -5,7 +5,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class DriveToDefense extends CommandGroup {
+public class DriveToDefense extends CommandGroup
+{
     
     public  DriveToDefense()
     {

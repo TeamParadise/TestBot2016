@@ -23,7 +23,8 @@ public class Winch extends Subsystem
     }
     public void moveWinchUp()
     {
-    	winchTalon.set(0.7285);
+    	//winchTalon.set(0.7285);
+    	winchTalon.set(1.0);
     }
     public void stopWinch()
     {

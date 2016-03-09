@@ -2,9 +2,12 @@ package org.usfirst.frc.team1165.robot;
 
 import org.usfirst.frc.team1165.robot.commands.CancelCommand;
 import org.usfirst.frc.team1165.robot.commands.ClimbUpTower;
+import org.usfirst.frc.team1165.robot.commands.DriveOverRockWall;
+import org.usfirst.frc.team1165.robot.commands.DriveOverTerrain;
 //import org.usfirst.frc.team1165.robot.commands.DriveOverRockWall;
 //import org.usfirst.frc.team1165.robot.commands.DriveOverTerrain;
 import org.usfirst.frc.team1165.robot.commands.DriveStraight;
+import org.usfirst.frc.team1165.robot.commands.DriveUnderLowBar;
 //import org.usfirst.frc.team1165.robot.commands.DriveUnderLowBar;
 //import org.usfirst.frc.team1165.robot.commands.DriveUnderPortcullis;
 import org.usfirst.frc.team1165.robot.commands.FlipDriveDirection;
@@ -58,7 +61,6 @@ public class OI
 	public OI()
 	{
 		SmartDashboard.putNumber(RobotMap.linearActuatorSetpointKey, 2.50);
-		SmartDashboard.putBoolean(RobotMap.ArmLimitKey, false);
 		SmartDashboard.putBoolean(RobotMap.EnableRespoolWinch, false);
 		//SmartDashboard.putData(new SetLinearActuatorSetpoint(RobotMap.linearActuatorSetpointKey));
 		SmartDashboard.putNumber("Push Time", 0.5);
@@ -75,9 +77,9 @@ public class OI
 		flipDriveDirection.whenReleased(new FlipDriveDirection());
 		cameraButton.whenPressed(new SwitchSecondayCamera());
 		flipFront.whenPressed(new FlipRobotFront());
-		//lowBarButton.whenPressed(new DriveUnderLowBar());
-		//terrainButton.whenPressed(new DriveOverTerrain());
-		//rockWall.whenPressed(new DriveOverRockWall());
+		lowBarButton.whenPressed(new DriveUnderLowBar());
+		terrainButton.whenPressed(new DriveOverTerrain());
+		rockWall.whenPressed(new DriveOverRockWall());
 		cancelButton.whenPressed(new CancelCommand());
 		//portcullisButton.whenPressed(new DriveUnderPortcullis());
 		//drawbridgeButton.whenPressed(new DriveOverDrawbridge());

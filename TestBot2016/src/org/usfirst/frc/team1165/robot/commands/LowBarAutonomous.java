@@ -1,10 +1,6 @@
-/*package org.usfirst.frc.team1165.robot.commands;
-
+package org.usfirst.frc.team1165.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-*//**
- *
- *//*
 public class LowBarAutonomous extends CommandGroup
 {
 
@@ -14,4 +10,3 @@ public class LowBarAutonomous extends CommandGroup
 		addSequential(new DriveUnderLowBar());
 	}
 }
-*/

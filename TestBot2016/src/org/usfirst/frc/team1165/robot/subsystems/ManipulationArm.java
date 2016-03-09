@@ -6,11 +6,12 @@ import org.usfirst.frc.team1165.robot.commands.DriveArmWithGamepad;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class ManipulationArm extends Subsystem
 {
-	CANTalon armMotor;
+	public CANTalon armMotor;
 
 	public ManipulationArm()
 	{
@@ -26,9 +27,14 @@ public class ManipulationArm extends Subsystem
 	public void moveArm()
 	{
 		double value = Robot.oi.gamepad.getY(Hand.kLeft) * 0.2568;
-		if ((Robot.absoluteEncoder.atLowerLimit() && value < 0)
-				|| (Robot.absoluteEncoder.atUpperLimit() && value > 0)
-				|| (Math.abs(Robot.oi.gamepad.getY(Hand.kLeft)) < 0.1))
+		moveArm(value);
+	}
+	public void moveArm(double speed)
+	{
+		double value = speed;
+		if (/*(Robot.absoluteEncoder.atLowerLimit() && value < 0)
+				||*/ (Robot.absoluteEncoder.atUpperLimit() && value > 0))
+				//|| (Math.abs(Robot.oi.gamepad.getY(Hand.kLeft)) < 0.1) )
 		{
 			value = 0;
 		}
@@ -36,20 +42,23 @@ public class ManipulationArm extends Subsystem
 	}
 	public void moveArmToPoint(double setpoint)
 	{
-		if(setpoint>Robot.absoluteEncoder.getCurrentValue()-15)
+		SmartDashboard.putNumber(" Current Value -Setpoint",Math.abs(Robot.absoluteEncoder.getCurrentValue() - setpoint) );
+		if(Math.abs(Robot.absoluteEncoder.getCurrentValue() - setpoint)  < 15)// && setpoint < Robot.absoluteEncoder.getCurrentValue() + 15)
 		{
-			armMotor.set(0);
+			SmartDashboard.putNumber("Move Arm Value", 0.0);
+			moveArm(0.0);	
 		}
-		if(setpoint>Robot.absoluteEncoder.getCurrentValue()&&!Robot.absoluteEncoder.atUpperLimit())
+		else if(setpoint > Robot.absoluteEncoder.getCurrentValue() && !Robot.absoluteEncoder.atUpperLimit())
 		{
-			armMotor.set(0.4);
+			SmartDashboard.putNumber("Move Arm Value", 0.4);
+			moveArm(0.4);
 		}
-		else if(setpoint<Robot.absoluteEncoder.getCurrentValue()&&!Robot.absoluteEncoder.atLowerLimit())
+		else if(setpoint < Robot.absoluteEncoder.getCurrentValue() && !Robot.absoluteEncoder.atLowerLimit())
 		{
-			armMotor.set(-0.4);
+			SmartDashboard.putNumber("Move Arm Value", -0.4);
+			moveArm(-0.4);
 		}
 	}
-	
 	public boolean onPoint(double setpoint)
 	{
 		return Math.abs(Robot.absoluteEncoder.getCurrentValue())-setpoint<25;	

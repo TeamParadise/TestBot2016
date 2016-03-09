@@ -5,14 +5,15 @@ import org.usfirst.frc.team1165.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class PositionRobotForShooting extends Command
 {
-	private final double centerFrameX = 60;
-	private final double centerFrameY = 60;
+	private final double centerFrameX = 240;
+	private final double centerFrameY = 135;
 	private double currentX;
 	private double currentY;
 	private double offset = 10;
@@ -42,65 +43,60 @@ public class PositionRobotForShooting extends Command
 		table = NetworkTable.getTable("GRIP/myContoursReport");
 		double x[] = table.getNumberArray("centerX");
 		double y[] = table.getNumberArray("centerY");
-		if (x.length == 1)
+		if (x.length == 1 && y.length == 1)
 		{
-			for (double i : x)
-			{
-				try
-				{
 					currentX = x[0];
 					currentY = y[0];
-				}
-				catch (Exception e)
-				{
-					currentX = -1;
-					currentY = -1;
-				}
-			} // Obtain X and Y values from GRIP/myContoursReport
+		 // Obtain X and Y values from GRIP/myContoursReport
 		}
 		else
 		{
-			currentX = -1;
-			currentY = -1;
+			return;
 		}
-		if (currentX != -1 && currentY != -1)
+		if (Math.abs(centerFrameX - currentX) >= offset)
 		{
-			if (Math.abs(centerFrameX - currentX) >= offset)
-			{
-				if (centerFrameX - currentX > 0)
-				{
-					//Direction might need to be configured based on actual robot
-					Robot.robotDrive.arcadeDrive(0, RobotMap.ROTATE_SPEED);
-				}
-				else if (centerFrameX - currentY < 0)
-				{
-					//Direction might need to be configured on actual Robot
-					Robot.robotDrive.arcadeDrive(0, -RobotMap.ROTATE_SPEED);
-				}
+			alignX = false;
+			if (centerFrameX - currentX > 0)
+			{		
+				//Direction might need to be configured based on actual robot
+				 SmartDashboard.putNumber("Drive Direction", RobotMap.ROTATE_SPEED);
+				Robot.robotDrive.arcadeDrive(0, -RobotMap.ROTATE_SPEED);
 			}
-			else
+			else if (centerFrameX - currentX < 0)
 			{
-				Robot.robotDrive.arcadeDrive(0, 0);
-				alignX = true;
+				//Direction might need to be configured on actual Robot
+				 SmartDashboard.putNumber("Drive Direction", -RobotMap.ROTATE_SPEED);
+				Robot.robotDrive.arcadeDrive(0, RobotMap.ROTATE_SPEED);
 			}
-			/*if (Math.abs(centerFrameY - currentY) >= offset)
-			{
-				currentActuatorPos = Robot.linearActuator.getPosition();
-				if (centerFrameY - currentY > 0)
-				{
-					Robot.linearActuator.setSetpoint(currentActuatorPos-actuatorPosIncrement);
-				}
-				else if(centerFrameY - currentY < 0)
-				{
-					Robot.linearActuator.setSetpoint(currentActuatorPos+actuatorPosIncrement);}
-			}
-			else
-			{
-				alignY = true;
-			}*/
 		}
+		else
+		{
+			SmartDashboard.putNumber("Drive Direction", 0);
+			Robot.robotDrive.arcadeDrive(0, 0);
+			alignX = true;
+		}
+		/*if (Math.abs(centerFrameY - currentY) >= offset)
+		{
+			currentActuatorPos = Robot.linearActuator.getPosition();
+			if (centerFrameY - currentY > 0)
+			{
+				Robot.linearActuator.setSetpoint(currentActuatorPos-actuatorPosIncrement);
+			}
+			else if(centerFrameY - currentY < 0)
+			{
+				Robot.linearActuator.setSetpoint(currentActuatorPos+actuatorPosIncrement);}
+		}
+		else
+		{
+			alignY = true;
+		}*/
+		SmartDashboard.putNumber("CenterX", centerFrameX);
+		SmartDashboard.putNumber("Center Y",centerFrameY);
+		SmartDashboard.putNumber("Current X", currentX);
+		SmartDashboard.putNumber("Current Y", currentY);
+		SmartDashboard.putBoolean("Is Aligned X", alignX);
 	}
-
+	
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished()

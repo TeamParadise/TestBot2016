@@ -1,10 +1,8 @@
 package org.usfirst.frc.team1165.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -13,12 +11,9 @@ import org.usfirst.frc.team1165.robot.commands.DoNothing;
 import org.usfirst.frc.team1165.robot.subsystems.AbsoluteEncoder;
 import org.usfirst.frc.team1165.robot.subsystems.Camera;
 import org.usfirst.frc.team1165.robot.subsystems.Camera.CameraMode;
-//import org.usfirst.frc.team1165.robot.commands.LowBarAutonomous;
-//import org.usfirst.frc.team1165.robot.commands.MoatRoughTerrainAutonomous;
-//import org.usfirst.frc.team1165.robot.commands.RockWallRampartsAutonomous;
-//import org.usfirst.frc.team1165.robot.subsystems.AbsoluteEncoder;
-//import org.usfirst.frc.team1165.robot.subsystems.Camera;
-//import org.usfirst.frc.team1165.robot.subsystems.Camera.CameraMode;
+import org.usfirst.frc.team1165.robot.commands.LowBarAutonomous;
+import org.usfirst.frc.team1165.robot.commands.MoatRoughTerrainAutonomous;
+import org.usfirst.frc.team1165.robot.commands.RockWallRampartsAutonomous;
 import org.usfirst.frc.team1165.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team1165.robot.subsystems.Gyroscope;
 import org.usfirst.frc.team1165.robot.subsystems.ManipulationArm;
@@ -69,9 +64,9 @@ public class Robot extends IterativeRobot
 		camera = new Camera(CameraMode.THREAD, RobotMap.primaryCameraName,RobotMap.secondaryCameraName,RobotMap.tertiaryCameraName);
 		autoChooser = new SendableChooser();
 		autoChooser.addObject("Do Nothing", new DoNothing());
-		//autoChooser.addObject("Breach Low Bar", new LowBarAutonomous());
-		//autoChooser.addObject("Moat Or Rough Terrain", new MoatRoughTerrainAutonomous());
-		//autoChooser.addDefault("RockWallRamparts", new RockWallRampartsAutonomous());
+		autoChooser.addObject("Breach Low Bar", new LowBarAutonomous());
+		autoChooser.addObject("Moat Or Rough Terrain", new MoatRoughTerrainAutonomous());
+		autoChooser.addDefault("RockWallRamparts", new RockWallRampartsAutonomous());
 		SmartDashboard.putData("Auto:", autoChooser);
 	}
 
@@ -91,7 +86,6 @@ public class Robot extends IterativeRobot
 	 */
 	public void autonomousPeriodic()
 	{
-		SmartDashboard.putBoolean(RobotMap.ArmLimitKey, false);
 		Scheduler.getInstance().run();	
 	}
 
@@ -105,7 +99,6 @@ public class Robot extends IterativeRobot
 		{
 			autonomousCommand.cancel();
 			Robot.oi.driveForward = true;
-			SmartDashboard.putBoolean(RobotMap.ArmLimitKey, false);
 		}
 	}
 

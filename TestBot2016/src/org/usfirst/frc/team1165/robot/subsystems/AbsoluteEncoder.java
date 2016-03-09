@@ -5,6 +5,7 @@ import org.usfirst.frc.team1165.robot.commands.DisplayEncoder;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -16,15 +17,13 @@ public class AbsoluteEncoder extends Subsystem
 	public double initialValue;
     public double upperLimit;
     public double lowerLimit;
-    public double initialLowerLimit = 131;
-    public double upperLimitDiff = 53; //distance from initialValue
-    public double lowerLimitDiff = 51; //distance from initialValue
-    
-    private Timer t;
+    public double terrainValue;
+    public double initialLowerLimit = 115;
+    public double upperLimitDiff = 95; //distance from lowerLimit
+    public double initalValueDiff = 50; //distance from LowerLimit
+    public double terrainValueDiff = 35;
     public AbsoluteEncoder()
     {
-    	t = new Timer();
-    	t.start();
     	initializeEncoder();
     }
     public void initDefaultCommand() 
@@ -37,7 +36,8 @@ public class AbsoluteEncoder extends Subsystem
     	SmartDashboard.putNumber("Encoder Initial Value", initialValue);
     	SmartDashboard.putNumber("Encoder Lower Limit",lowerLimit);
     	SmartDashboard.putNumber("Encoder UpperLimit", upperLimit);
-    	
+    	SmartDashboard.putNumber("Match Time", DriverStation.getInstance().getMatchTime());
+    	SmartDashboard.putNumber("Terrain Value ", terrainValue);
     }
     public double getCurrentValue()
     {
@@ -45,26 +45,29 @@ public class AbsoluteEncoder extends Subsystem
     }
     public boolean atUpperLimit()
     {
-    	boolean armLimit = SmartDashboard.getBoolean(RobotMap.ArmLimitKey);
-    	if(t.get()>114||armLimit)
+    	if(DriverStation.getInstance().getMatchTime()<30 && DriverStation.getInstance().isOperatorControl())
     	return encoder.get()>=upperLimit;
     	else
     		return encoder.get()>=initialValue;
     }
+    public boolean atTerrainValue()
+    {
+    	return encoder.get() >= terrainValue -5;
+    }
     public boolean atLowerLimit()
     {
-    	return encoder.get()<=lowerLimit;
+    	return encoder.get()<=lowerLimit; //drive the motor a little far due to slop in the gearbox
     }
     public boolean atInitialValue()
     {
-    	return encoder.get()<=initialValue+10&&encoder.get()>=initialValue-10;
+    	return encoder.get()<=initialValue + 10 &&encoder.get() >= initialValue-10;
     }
     public void resetEncoderArm()
     {
-    	
     	lowerLimit = encoder.get();
-    	initialValue = lowerLimit+lowerLimitDiff;
-    	upperLimit = initialValue+upperLimitDiff;
+    	initialValue = lowerLimit + initalValueDiff;
+    	upperLimit = lowerLimit + upperLimitDiff;
+    	terrainValue = lowerLimit + terrainValueDiff;
     }
     public double getCorrectedValue()
     {
@@ -73,8 +76,8 @@ public class AbsoluteEncoder extends Subsystem
     public void initializeEncoder()
     {
 		lowerLimit = initialLowerLimit;
-		initialValue = lowerLimit+lowerLimitDiff;
-    	upperLimit = initialValue+upperLimitDiff;
-    	
+		initialValue = lowerLimit+initalValueDiff;
+    	upperLimit = lowerLimit+upperLimitDiff;
+    	terrainValue = lowerLimit + terrainValueDiff;
     }
 }

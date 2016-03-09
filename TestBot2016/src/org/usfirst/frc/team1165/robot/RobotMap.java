@@ -55,7 +55,6 @@ public class RobotMap
     public static final String linearActuatorSensorMinKey	= "Linear Actuator Sensor Min";
     public static final String linearActuatorSensorMaxKey	= "Linear Actuator Sensor Max";
     public static final String linearActuatorSetpointKey	= "Linear Actuator Setpoint";
-    public static final String ArmLimitKey					= "Absolute Upper Limit Enabled";
     public static final String EnableRespoolWinch			= "Enable Respool Winch";
     
     public static final String primaryCameraName 			= "cam0";
