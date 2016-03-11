@@ -19,7 +19,7 @@ public class AbsoluteEncoder extends Subsystem
     public double lowerLimit;
     public double terrainValue;
     public double initialLowerLimit = 142;
-    public double upperLimitDiff = 100; //distance from lowerLimit
+    public double upperLimitDiff = 110; //distance from lowerLimit
     public double initalValueDiff = 55; //distance from LowerLimit
     public double terrainValueDiff = 35;
     public AbsoluteEncoder()
