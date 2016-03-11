@@ -7,9 +7,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- *
- */
 public class PositionRobotForShooting extends Command
 {
 	private final double centerFrameX = 240;
@@ -75,7 +72,7 @@ public class PositionRobotForShooting extends Command
 			Robot.robotDrive.arcadeDrive(0, 0);
 			alignX = true;
 		}
-		/*if (Math.abs(centerFrameY - currentY) >= offset)
+		if (Math.abs(centerFrameY - currentY) >= offset)
 		{
 			currentActuatorPos = Robot.linearActuator.getPosition();
 			if (centerFrameY - currentY > 0)
@@ -89,7 +86,7 @@ public class PositionRobotForShooting extends Command
 		else
 		{
 			alignY = true;
-		}*/
+		}
 		SmartDashboard.putNumber("CenterX", centerFrameX);
 		SmartDashboard.putNumber("Center Y",centerFrameY);
 		SmartDashboard.putNumber("Current X", currentX);
@@ -101,7 +98,7 @@ public class PositionRobotForShooting extends Command
 	@Override
 	protected boolean isFinished()
 	{
-		return alignX;// &&alignY;
+		return alignX &&alignY;
 	}
 
 	// Called once after isFinished returns true

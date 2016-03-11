@@ -8,6 +8,7 @@ public class RockWallRampartsAutonomous extends CommandGroup
 
 	public RockWallRampartsAutonomous()
 	{
+		addSequential(new PrepareForTerrain());
 		addSequential(new DriveToDefense());
 		addSequential(new DriveOverRockWall());
 	}

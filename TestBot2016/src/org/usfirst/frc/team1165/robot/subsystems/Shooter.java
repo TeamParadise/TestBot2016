@@ -1,4 +1,4 @@
-/*package org.usfirst.frc.team1165.robot.subsystems;
+package org.usfirst.frc.team1165.robot.subsystems;
 
 import org.usfirst.frc.team1165.robot.Robot;
 import org.usfirst.frc.team1165.robot.commands.DriveShooterWithGamepad;
@@ -11,9 +11,6 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-*//**
- *
- *//*
 public class Shooter extends Subsystem 
 {
 	public CANTalon leftWheel;
@@ -100,4 +97,4 @@ public class Shooter extends Subsystem
 		SmartDashboard.putNumber("Right Wheel Cur Value", rightWheel.get());
 		SmartDashboard.putNumber("Right Wheel Cur RPM", rightWheel.getSpeed());
 	}
-}*/
+}

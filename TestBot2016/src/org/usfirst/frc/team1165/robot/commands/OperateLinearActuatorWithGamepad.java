@@ -1,12 +1,12 @@
-/*package org.usfirst.frc.team1165.robot.commands;
+package org.usfirst.frc.team1165.robot.commands;
 
 import org.usfirst.frc.team1165.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-*//**
+/**
  * Operates the linear actuator using input from a joystick
- *//*
+ */
 public class OperateLinearActuatorWithGamepad extends Command
 {
 
@@ -54,4 +54,4 @@ public class OperateLinearActuatorWithGamepad extends Command
 	{
 		Robot.linearActuator.setSpeed(0);
 	}
-}*/
+}

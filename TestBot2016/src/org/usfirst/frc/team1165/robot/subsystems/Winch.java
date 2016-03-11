@@ -14,7 +14,7 @@ public class Winch extends Subsystem
 	public CANTalon winchTalon;
 	public Winch()
 	{
-		winchTalon = new CANTalon(2);
+		winchTalon = new CANTalon(8);
 		winchTalon.setInverted(true);
 	}
     public void initDefaultCommand() 

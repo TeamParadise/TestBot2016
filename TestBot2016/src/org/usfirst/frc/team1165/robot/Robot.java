@@ -17,11 +17,11 @@ import org.usfirst.frc.team1165.robot.commands.RockWallRampartsAutonomous;
 import org.usfirst.frc.team1165.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team1165.robot.subsystems.Gyroscope;
 import org.usfirst.frc.team1165.robot.subsystems.ManipulationArm;
-//import org.usfirst.frc.team1165.robot.subsystems.LinearActuatorPID;
-//import org.usfirst.frc.team1165.robot.subsystems.LinearActuatorSensor;
-//import org.usfirst.frc.team1165.robot.subsystems.ManipulationArm;
-//import org.usfirst.frc.team1165.robot.subsystems.MoveServo;
-//import org.usfirst.frc.team1165.robot.subsystems.Shooter;
+import org.usfirst.frc.team1165.robot.subsystems.LinearActuatorPID;
+import org.usfirst.frc.team1165.robot.subsystems.LinearActuatorSensor;
+import org.usfirst.frc.team1165.robot.subsystems.ManipulationArm;
+import org.usfirst.frc.team1165.robot.subsystems.MoveServo;
+import org.usfirst.frc.team1165.robot.subsystems.Shooter;
 import org.usfirst.frc.team1165.robot.subsystems.Winch;
 
 /**
@@ -34,10 +34,10 @@ import org.usfirst.frc.team1165.robot.subsystems.Winch;
 public class Robot extends IterativeRobot
 {
 	public static final DriveTrain robotDrive = new DriveTrain();
-	//public static final LinearActuatorSensor linearActuatorSensor = new LinearActuatorSensor();
-	//public static final LinearActuatorPID linearActuator = new LinearActuatorPID();
-	//public static final MoveServo moveServo = new MoveServo();
-	//public static final Shooter shooter = new Shooter();
+	public static final LinearActuatorSensor linearActuatorSensor = new LinearActuatorSensor();
+	public static final LinearActuatorPID linearActuator = new LinearActuatorPID();
+	public static final MoveServo moveServo = new MoveServo();
+	public static final Shooter shooter = new Shooter();
 	public static final Winch winch = new Winch();
 	public static final ManipulationArm arm = new ManipulationArm();
 	public static final AbsoluteEncoder absoluteEncoder = new AbsoluteEncoder();
@@ -61,7 +61,7 @@ public class Robot extends IterativeRobot
 	{
 		oi = new OI();
 		// instantiate the command used for the autonomous period
-		camera = new Camera(CameraMode.THREAD, RobotMap.primaryCameraName,RobotMap.secondaryCameraName,RobotMap.tertiaryCameraName);
+		camera = new Camera(CameraMode.THREAD, RobotMap.primaryCameraName,RobotMap.secondaryCameraName);//,RobotMap.tertiaryCameraName);
 		autoChooser = new SendableChooser();
 		autoChooser.addObject("Do Nothing", new DoNothing());
 		autoChooser.addObject("Breach Low Bar", new LowBarAutonomous());

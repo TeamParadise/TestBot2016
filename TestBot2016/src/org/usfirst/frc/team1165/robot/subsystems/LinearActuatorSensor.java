@@ -1,4 +1,4 @@
-/*package org.usfirst.frc.team1165.robot.subsystems;
+package org.usfirst.frc.team1165.robot.subsystems;
 
 import org.usfirst.frc.team1165.robot.Robot;
 import org.usfirst.frc.team1165.robot.RobotMap;
@@ -8,9 +8,8 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-*//**
- * Provides current position of linear actuator using an AnalogPotentiometer.
- *//*
+/** Provides current position of linear actuator using an AnalogPotentiometer.
+ */
 public class LinearActuatorSensor extends Subsystem
 {
 	private AnalogPotentiometer pot;
@@ -70,4 +69,4 @@ public class LinearActuatorSensor extends Subsystem
 			SmartDashboard.putBoolean("On Target", Robot.linearActuator.onTarget());
 		}
 	}
-}*/
+}

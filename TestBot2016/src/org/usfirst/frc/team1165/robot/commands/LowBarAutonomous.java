@@ -6,6 +6,7 @@ public class LowBarAutonomous extends CommandGroup
 
 	public LowBarAutonomous()
 	{
+		addSequential(new PrepareForLowBar());
 		addSequential(new DriveToDefense());
 		addSequential(new DriveUnderLowBar());
 	}

@@ -10,6 +10,6 @@ public class DriveToDefense extends CommandGroup
     
     public  DriveToDefense()
     {
-        addSequential(new DriveStraight(0.75,1));
+        addSequential(new DriveStraight(0.5,0.75));
     }
 }

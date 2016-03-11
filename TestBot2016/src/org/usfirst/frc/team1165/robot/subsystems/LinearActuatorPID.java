@@ -1,4 +1,4 @@
-/*package org.usfirst.frc.team1165.robot.subsystems;
+package org.usfirst.frc.team1165.robot.subsystems;
 
 import org.usfirst.frc.team1165.robot.Robot;
 import org.usfirst.frc.team1165.robot.RobotMap;
@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
- * PID subsystem for the AndyMark am-3076 linear actuator.
+ // PID subsystem for the AndyMark am-3076 linear actuator.
  
 public class LinearActuatorPID extends PIDSubsystem
 {
@@ -56,10 +56,10 @@ public class LinearActuatorPID extends PIDSubsystem
         LiveWindow.addActuator("Actuator", "PID", getPIDController());
 	}
 
-	*//**
+	/**
 	 * Set a default command that allows us to control the actuator via the
 	 * joystick when it is not being controlled by the PID controller.
-	 *//*
+	 */
 	public void initDefaultCommand()
 	{
 		// Set the default command for a subsystem here.
@@ -73,11 +73,11 @@ public class LinearActuatorPID extends PIDSubsystem
 		minSetSpeed = Double.MAX_VALUE;
 	}
 
-	*//**
+	/**
 	 * Called by the PID controller to get the current input value.
 	 * Returns the current value from the analog potentiometer
 	 * indicating the position of the actuator.
-	 *//*
+	 */
 	protected double returnPIDInput()
 	{
 		// Return your input value for the PID loop
@@ -86,9 +86,9 @@ public class LinearActuatorPID extends PIDSubsystem
 		return Robot.linearActuatorSensor.getPosition();
 	}
 
-	*//**
+	/**
 	 * Sets the motor speed between -1 and 1.
-	 *//*
+	 */
 	public void setSpeed(double speed)
 	{
 		SmartDashboard.putNumber(RobotMap.linearActuatorSpeedKey, speed);
@@ -105,12 +105,12 @@ public class LinearActuatorPID extends PIDSubsystem
 		SmartDashboard.putNumber(RobotMap.linearActuatorSpeedMinKey, minSetSpeed);
 	}
 	
-	*//**
+	/**
 	 * Called by the PID controller with its current calculated output value,
 	  which is used to set the motor direction and speed.
-	 *//*
+	 */
 	protected void usePIDOutput(double output)
 	{
 		setSpeed(output);
 	}
-}*/
+}

@@ -1,4 +1,4 @@
-/*package org.usfirst.frc.team1165.robot.subsystems;
+package org.usfirst.frc.team1165.robot.subsystems;
 
 import org.usfirst.frc.team1165.robot.Robot;
 import org.usfirst.frc.team1165.robot.commands.ServoPosition;
@@ -8,9 +8,6 @@ import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-*//**
- *
- *//*
 public class MoveServo extends Subsystem {
     
 	public static Servo servo1;
@@ -36,7 +33,7 @@ public class MoveServo extends Subsystem {
     }
     public void angle(Joystick stick)
     {
-    	double angle=Robot.shooter.rightWheel.getSpeed() >=3500 && Robot.oi.ServoButton.get()? 0 : maxAngle;
+    	double angle=Robot.shooter.rightWheel.getSpeed() >=3500 && Robot.oi.servoButton.get()? 0 : maxAngle;
        	servo1.setAngle(angle);
     }
     public void push()
@@ -59,4 +56,4 @@ public class MoveServo extends Subsystem {
     {
     	SmartDashboard.putNumber("Servo Value", getAngle());
     }
-}*/
+}

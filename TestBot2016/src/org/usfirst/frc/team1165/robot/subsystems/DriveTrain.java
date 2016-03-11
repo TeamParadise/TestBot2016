@@ -26,7 +26,7 @@ public class DriveTrain extends Subsystem
 	   canTalon5 = new CANTalon(5);
 	   canTalon6 = new CANTalon(6);
 	   canTalon7 = new CANTalon(7);
-	   robotDrive = new RobotDrive(canTalon4,canTalon5,canTalon6,canTalon7);
+	   robotDrive = new RobotDrive(canTalon6,canTalon7,canTalon4,canTalon5);
    }
 
     public void initDefaultCommand() 

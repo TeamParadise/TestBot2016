@@ -7,6 +7,7 @@ public class MoatRoughTerrainAutonomous extends CommandGroup
 
 	public MoatRoughTerrainAutonomous()
 	{
+		addSequential(new PrepareForTerrain());
 		addSequential(new DriveToDefense());
 		addSequential(new DriveOverTerrain());
 	}

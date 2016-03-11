@@ -15,7 +15,7 @@ public class ManipulationArm extends Subsystem
 
 	public ManipulationArm()
 	{
-		armMotor = new CANTalon(3);
+		armMotor = new CANTalon(2);
 		armMotor.setInverted(true);
 	}
 
