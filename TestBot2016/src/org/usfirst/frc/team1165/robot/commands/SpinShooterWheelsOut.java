@@ -1,12 +1,9 @@
-/*package org.usfirst.frc.team1165.robot.commands;
+package org.usfirst.frc.team1165.robot.commands;
 
 import org.usfirst.frc.team1165.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-*//**
- *
- *//*
 public class SpinShooterWheelsOut extends Command {
 
 	double rpm;
@@ -46,4 +43,3 @@ public class SpinShooterWheelsOut extends Command {
     protected void interrupted() {
     }
 }
-*/

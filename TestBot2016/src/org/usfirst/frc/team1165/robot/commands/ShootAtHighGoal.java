@@ -1,11 +1,8 @@
-/*package org.usfirst.frc.team1165.robot.commands;
+package org.usfirst.frc.team1165.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
-*//**
- *
- *//*
 public class ShootAtHighGoal extends CommandGroup {
     
     public  ShootAtHighGoal() 
@@ -18,4 +15,3 @@ public class ShootAtHighGoal extends CommandGroup {
     	addSequential(new SetLinearActuatorSetpoint(0.9));
     }
 }
-*/

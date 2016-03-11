@@ -43,7 +43,7 @@ public class ManipulationArm extends Subsystem
 	public void moveArmToPoint(double setpoint)
 	{
 		SmartDashboard.putNumber(" Current Value -Setpoint",Math.abs(Robot.absoluteEncoder.getCurrentValue() - setpoint) );
-		if(Math.abs(Robot.absoluteEncoder.getCurrentValue() - setpoint)  < 15)// && setpoint < Robot.absoluteEncoder.getCurrentValue() + 15)
+		if(Math.abs(Robot.absoluteEncoder.getCurrentValue() - setpoint)  < 5)// && setpoint < Robot.absoluteEncoder.getCurrentValue() + 15)
 		{
 			SmartDashboard.putNumber("Move Arm Value", 0.0);
 			moveArm(0.0);	

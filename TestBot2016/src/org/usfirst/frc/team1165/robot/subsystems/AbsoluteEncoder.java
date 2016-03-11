@@ -18,7 +18,7 @@ public class AbsoluteEncoder extends Subsystem
     public double upperLimit;
     public double lowerLimit;
     public double terrainValue;
-    public double initialLowerLimit = 142;
+    public double initialLowerLimit = 150;
     public double upperLimitDiff = 110; //distance from lowerLimit
     public double initalValueDiff = 55; //distance from LowerLimit
     public double terrainValueDiff = 35;
@@ -56,7 +56,7 @@ public class AbsoluteEncoder extends Subsystem
     }
     public boolean atLowerLimit()
     {
-    	return encoder.get()<=lowerLimit; //drive the motor a little far due to slop in the gearbox
+    	return encoder.get()<=lowerLimit+5; //drive the motor a little far due to slop in the gearbox
     }
     public boolean atInitialValue()
     {

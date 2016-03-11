@@ -11,6 +11,7 @@ import org.usfirst.frc.team1165.robot.commands.DoNothing;
 import org.usfirst.frc.team1165.robot.subsystems.AbsoluteEncoder;
 import org.usfirst.frc.team1165.robot.subsystems.Camera;
 import org.usfirst.frc.team1165.robot.subsystems.Camera.CameraMode;
+import org.usfirst.frc.team1165.robot.commands.DriveStraightAuto;
 import org.usfirst.frc.team1165.robot.commands.LowBarAutonomous;
 import org.usfirst.frc.team1165.robot.commands.MoatRoughTerrainAutonomous;
 import org.usfirst.frc.team1165.robot.commands.RockWallRampartsAutonomous;
@@ -67,6 +68,7 @@ public class Robot extends IterativeRobot
 		autoChooser.addObject("Breach Low Bar", new LowBarAutonomous());
 		autoChooser.addObject("Moat Or Rough Terrain", new MoatRoughTerrainAutonomous());
 		autoChooser.addDefault("RockWallRamparts", new RockWallRampartsAutonomous());
+		autoChooser.addObject("Drive Straight", new DriveStraightAuto());
 		SmartDashboard.putData("Auto:", autoChooser);
 	}
 

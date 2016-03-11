@@ -1,13 +1,10 @@
-/*package org.usfirst.frc.team1165.robot.commands;
+package org.usfirst.frc.team1165.robot.commands;
 
 import org.usfirst.frc.team1165.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-*//**
- * Sets the set point on the linear actuator PID subsystem.
- *//*
 public class SetLinearActuatorSetpoint extends Command
 {
 	private double setpoint;
@@ -17,20 +14,12 @@ public class SetLinearActuatorSetpoint extends Command
 	{
 		requires(Robot.linearActuator);
 	}
-
-	*//**
-	 * Construct with a hard coded set point.
-	 *//*
 	public SetLinearActuatorSetpoint(double setpoint)
 	{
 		this();
 		this.setpoint = setpoint;
 	}
 
-	*//**
-	 * Construct with the key of a SmartDashboard value that
-	 * is used to obtain the set point.
-	 *//*
 	public SetLinearActuatorSetpoint(String setpointKey)
 	{
 		this();
@@ -84,4 +73,3 @@ public class SetLinearActuatorSetpoint extends Command
 		end();
 	}
 }
-*/
