@@ -10,7 +10,7 @@ public class DriveUnderLowBar extends CommandGroup
 
 	public DriveUnderLowBar()
 	{
-		addSequential(new  SetLinearActuatorSetpoint(5.25),1);
+		addSequential(new  SetLinearActuatorSetpoint(5.0),1);
 		addSequential(new PrepareForLowBar());
 		//addSequential(new RotateToHeading(RobotMap.ROTATE_SPEED,RobotMap.BRAKE_OFFSET,180,RobotMap.ROTATE_CREEP_SPEED));
 		addSequential(new DriveStraight(0.75, 1.5));
