@@ -1,11 +1,8 @@
-/*package org.usfirst.frc.team1165.robot.commands;
+package org.usfirst.frc.team1165.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-*//**
- *
- *//*
 public class PickupBall extends CommandGroup {
     
     public  PickupBall()
@@ -16,4 +13,3 @@ public class PickupBall extends CommandGroup {
     	//addSequential(new DriveShooterWithJoysticks());
     }
 }
-*/

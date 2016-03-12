@@ -11,10 +11,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class MoveServo extends Subsystem {
     
 	public static Servo servo1;
+	public static Servo servo2;
 	public static double maxAngle = 75;
+	public static double minAngle = 0;
 	public MoveServo()
 	{
 		servo1 = new Servo(0);
+		servo2 = new Servo(3);
 	}
     public void initDefaultCommand() 
     {
@@ -28,21 +31,29 @@ public class MoveServo extends Subsystem {
     	if (retract)
     	{
     		servo1.setAngle(maxAngle);
+    		servo2.setAngle(minAngle);
     	}
     	return retract;
     }
     public void angle(Joystick stick)
     {
-    	double angle=Robot.shooter.rightWheel.getSpeed() >=3500 && Robot.oi.servoButton.get()? 0 : maxAngle;
+    	double angle=Robot.shooter.rightWheel.getSpeed() >= 3500 && Robot.oi.servoButton.get() ? minAngle : maxAngle;
        	servo1.setAngle(angle);
+       	angle = Robot.shooter.rightWheel.getSpeed() >= 3500 && Robot.oi.servoButton.get() ? maxAngle : minAngle;
+       	servo2.setAngle(angle);
     }
     public void push()
     {
-    	if (!protectServo()) servo1.setAngle(0);
+    	if (!protectServo()) 
+    	{
+    		servo1.setAngle(minAngle);
+    		servo2.setAngle(maxAngle);
+    	}
     }
     public void idle()
     {
     	servo1.setAngle(maxAngle);
+    	servo2.setAngle(minAngle);
     }
     public double getAngle()
     {

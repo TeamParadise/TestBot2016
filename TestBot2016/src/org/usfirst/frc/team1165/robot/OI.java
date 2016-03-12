@@ -12,6 +12,7 @@ import org.usfirst.frc.team1165.robot.commands.DriveUnderLowBar;
 //import org.usfirst.frc.team1165.robot.commands.DriveUnderPortcullis;
 import org.usfirst.frc.team1165.robot.commands.FlipDriveDirection;
 import org.usfirst.frc.team1165.robot.commands.FlipRobotFront;
+import org.usfirst.frc.team1165.robot.commands.PickupBall;
 import org.usfirst.frc.team1165.robot.commands.PositionRobotForShooting;
 import org.usfirst.frc.team1165.robot.commands.PushBallToShooter;
 import org.usfirst.frc.team1165.robot.commands.ResetEncoder;
@@ -72,7 +73,7 @@ public class OI
 		climbTower.whenPressed(new ClimbUpTower());
 		climbTower.whenReleased(new StopWinch());
 		//pushOutButton.whenPressed(new ShootAtHighGoal());
-		//pickupButton.whenPressed(new PickupBall());
+		pickupButton.whenPressed(new PickupBall());
 		servoButton.whenPressed(new PushBallToShooter(2));
 		flipDriveDirection.whenPressed(new FlipDriveDirection());
 		flipDriveDirection.whenReleased(new FlipDriveDirection());
