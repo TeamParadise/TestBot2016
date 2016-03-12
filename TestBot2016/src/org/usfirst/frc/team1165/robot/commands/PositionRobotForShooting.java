@@ -9,15 +9,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class PositionRobotForShooting extends Command
 {
-	private final double centerFrameX = 240;
-	private final double centerFrameY = 135;
+	private double centerFrameX = 240;
+	private double centerFrameY = 135;
 	private double currentX;
 	private double currentY;
-	private double offset = 10;
+	private double offset;
 	private boolean alignX = false;
 	private boolean alignY = false;
 	private double currentActuatorPos;
-	private final double actuatorPosIncrement = 0.1;
+	private double actuatorPosIncrement;
 	NetworkTable table;
 	double values[] = new double[0];
 
@@ -31,25 +31,19 @@ public class PositionRobotForShooting extends Command
 	@Override
 	protected void initialize()
 	{
+		actuatorPosIncrement = Robot.vision.getActuatorPosIncrement();
+		offset = Robot.vision.getOffset();
+		centerFrameX = Robot.vision.getCenterX();
+		centerFrameY = Robot.vision.getCenterY();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute()
 	{
-		table = NetworkTable.getTable("GRIP/myContoursReport");
-		double x[] = table.getNumberArray("centerX");
-		double y[] = table.getNumberArray("centerY");
-		if (x.length == 1 && y.length == 1)
-		{
-					currentX = x[0];
-					currentY = y[0];
-		 // Obtain X and Y values from GRIP/myContoursReport
-		}
-		else
-		{
-			return;
-		}
+
+		currentX = Robot.vision.getCurrentX();
+		currentY = Robot.vision.getCurrentY();
 		if (Math.abs(centerFrameX - currentX) >= offset)
 		{
 			alignX = false;
@@ -87,11 +81,8 @@ public class PositionRobotForShooting extends Command
 		{
 			alignY = true;
 		}
-		SmartDashboard.putNumber("CenterX", centerFrameX);
-		SmartDashboard.putNumber("Center Y",centerFrameY);
-		SmartDashboard.putNumber("Current X", currentX);
-		SmartDashboard.putNumber("Current Y", currentY);
 		SmartDashboard.putBoolean("Is Aligned X", alignX);
+		SmartDashboard.putBoolean("Is Aligned Y", alignY);
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
