@@ -22,7 +22,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Camera extends Subsystem implements Runnable
 {
-	public enum CameraMode { SUBSYSTEM, THREAD };
+	public enum CameraMode
+	{
+		SUBSYSTEM, THREAD
+	};
 
 	private ArrayList<Integer> cameraSessions = new ArrayList<Integer>();
 	private ArrayList<String> cameraNames = new ArrayList<String>();
@@ -30,56 +33,64 @@ public class Camera extends Subsystem implements Runnable
 	private int currentSessionIndex;
 	private Image frame;
 	private CameraMode mode;
-	
+
 	// Indicates to cycle to next camera in list:
 	private final static String chooseNextCamera = "Next";
-	
-	// This file on the roboRIO file system is used to store dumps of exceptions related to the camera:
+
+	// This file on the roboRIO file system is used to store dumps of exceptions
+	// related to the camera:
 	private final static String exceptionLogFile = "/home/lvuser/data/CameraException.txt";
-	
-	// This file on the roboRIO file system is used to store a list of the supported video modes:
+
+	// This file on the roboRIO file system is used to store a list of the
+	// supported video modes:
 	private final static String videoModesFile = "/home/lvuser/data/NIVision_VideoModes.txt";
-	
-	// This file on the roboRIO file system is used to store a list of the various vision attributes:
+
+	// This file on the roboRIO file system is used to store a list of the
+	// various vision attributes:
 	private final static String visionAttributesFile = "/home/lvuser/data/NIVision_Attributes.txt";
-	
-	// The default video mode. To see what modes are supported, load the robot code at
+
+	// The default video mode. To see what modes are supported, load the robot
+	// code at
 	// least once and look at the file indicated by videoModesFile above.
-	private final static String videoMode = "640 x 480 YUY 2 30.00 fps"; //"640 x 480 YUY 2 30.00 fps";
-	
+	private final static String videoMode = "640 x 480 YUY 2 30.00 fps"; // "640
+																			// x
+																			// 480
+																			// YUY
+																			// 2
+																			// 30.00
+																			// fps";
+
 	/**
 	 * Constructor.
-	 * @param mode Indicates if should run Camera as a SUBSYSTEM or a RUNNABLE
+	 * 
+	 * @param mode
+	 *            Indicates if should run Camera as a SUBSYSTEM or a RUNNABLE
 	 */
 	public Camera(CameraMode mode)
 	{
 		this(mode, RobotMap.primaryCameraName);
 	}
-	
+
 	/**
 	 * Constructor.
-	 * @param mode Indicates if should run Camera as a SUBSYSTEM or a RUNNABLE
-	 * @param cameraNames An arbitrary number of names of cameras to support
+	 * 
+	 * @param mode
+	 *            Indicates if should run Camera as a SUBSYSTEM or a RUNNABLE
+	 * @param cameraNames
+	 *            An arbitrary number of names of cameras to support
 	 */
 	public Camera(CameraMode mode, String... cameraNames)
 	{
-		try
-		{
-			Files.deleteIfExists(Paths.get(exceptionLogFile));
-		}
-		catch (Exception ex)
-		{
-		}
-		
 		this.mode = mode;
 		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
-		
+
 		// Create a session for every provided camera name:
 		for (String cameraName : cameraNames)
 		{
 			try
 			{
-				int session = NIVision.IMAQdxOpenCamera(cameraName, NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+				int session = NIVision.IMAQdxOpenCamera(cameraName,
+						NIVision.IMAQdxCameraControlMode.CameraControlModeController);
 				NIVision.IMAQdxSetAttributeString(session, "AcquisitionAttributes::VideoMode", videoMode);
 				cameraSessions.add(session);
 				this.cameraNames.add(cameraName);
@@ -89,21 +100,21 @@ public class Camera extends Subsystem implements Runnable
 				logException("Error creating session for camera " + cameraName, ex);
 			}
 		}
-		
+
 		// Sanity check:
 		if (cameraSessions.isEmpty())
 		{
-			logException("No camera sessions successfully created!", null);			
+			logException("No camera sessions successfully created!", null);
 			return;
 		}
-		
-				
+
 		try
 		{
-			// Log some interesting vision processing information at /home/lvuser/data on the roboRIO file system.
-			
+			// Log some interesting vision processing information at
+			// /home/lvuser/data on the roboRIO file system.
+
 			new File("/home/lvuser/data").mkdirs();
-			
+
 			PrintWriter pw = new PrintWriter(videoModesFile);
 			NIVision.dxEnumerateVideoModesResult result = NIVision.IMAQdxEnumerateVideoModes(cameraSessions.get(0));
 			pw.println("Current: \"" + result.videoModeArray[result.currentMode].Name + '"');
@@ -113,21 +124,21 @@ public class Camera extends Subsystem implements Runnable
 				pw.println('"' + item.Name + '"');
 			}
 			pw.close();
-			
+
 			NIVision.IMAQdxWriteAttributes(cameraSessions.get(0), visionAttributesFile);
 		}
 		catch (Exception ex)
 		{
 			// do nothing
 		}
-				
+
 		// Default to acquiring images from the primary camera:
 		currentSessionIndex = 0;
 		desiredCamera = this.cameraNames.get(currentSessionIndex);
 		startAcquisition(currentSessionIndex);
-				
+
 		CameraServer.getInstance().setQuality(80);
-		
+
 		if (mode == CameraMode.THREAD)
 		{
 			new Thread(this).start();
@@ -141,11 +152,14 @@ public class Camera extends Subsystem implements Runnable
 			setDefaultCommand(new ProcessCameraFrames(this));
 		}
 	}
-	
+
 	/**
 	 * Appends a message and/or exception to the exception log file.
-	 * @param msg may be null
-	 * @param ex may be null
+	 * 
+	 * @param msg
+	 *            may be null
+	 * @param ex
+	 *            may be null
 	 */
 	private void logException(String msg, Exception ex)
 	{
@@ -169,8 +183,8 @@ public class Camera extends Subsystem implements Runnable
 	}
 
 	/**
-	 * Handles processing of each camera frame and switching between cameras to keep
-	 * all access to camera sessions to a single thread.
+	 * Handles processing of each camera frame and switching between cameras to
+	 * keep all access to camera sessions to a single thread.
 	 */
 	public void processFrame()
 	{
@@ -179,7 +193,7 @@ public class Camera extends Subsystem implements Runnable
 			// There is nothing to do:
 			return;
 		}
-		
+
 		if (cameraNames.get(currentSessionIndex) != desiredCamera)
 		{
 			int tempSessionIndex;
@@ -195,7 +209,7 @@ public class Camera extends Subsystem implements Runnable
 			{
 				tempSessionIndex = cameraNames.indexOf(desiredCamera);
 			}
-			
+
 			if (tempSessionIndex == -1)
 			{
 				logException("No camera match for " + desiredCamera + "; camera not changed", null);
@@ -213,32 +227,35 @@ public class Camera extends Subsystem implements Runnable
 					logException("Error stopping acquisition for session index " + currentSessionIndex, ex);
 					success = false;
 				}
-				
+
 				success = success && startAcquisition(tempSessionIndex);
 
 				if (success)
 				{
-					// We successfully started grabbing - update the current session index:
+					// We successfully started grabbing - update the current
+					// session index:
 					currentSessionIndex = tempSessionIndex;
 				}
 				else
 				{
-					logException("Unable to switch to new camera session; resuming old session index " + currentSessionIndex, null);
-					
+					logException(
+							"Unable to switch to new camera session; resuming old session index " + currentSessionIndex,
+							null);
+
 					startAcquisition(currentSessionIndex);
 				}
-				
+
 				// Match the name to the camera we are grabbing from:
 				desiredCamera = cameraNames.get(currentSessionIndex);
 			}
 		}
-		
+
 		String msg = null;
 		try
 		{
 			msg = "Error grabbing frame for session index " + currentSessionIndex;
 			NIVision.IMAQdxGrab(cameraSessions.get(currentSessionIndex), frame, 1);
-			
+
 			msg = "Error passing frame to camera server";
 			CameraServer.getInstance().setImage(frame);
 		}
@@ -246,20 +263,23 @@ public class Camera extends Subsystem implements Runnable
 		{
 			logException(msg, ex);
 		}
-		
+
 	}
-	
+
 	/**
 	 * Call to switch to a specific camera
-	 * @param cameraName the name of the camera to switch to
+	 * 
+	 * @param cameraName
+	 *            the name of the camera to switch to
 	 */
 	public void setCamera(String cameraName)
 	{
 		desiredCamera = cameraName;
 	}
-	
+
 	/**
 	 * Starts acquisition from the specified session index.
+	 * 
 	 * @param sessionIndex
 	 * @return true if acquisition successfully started
 	 */
@@ -270,10 +290,10 @@ public class Camera extends Subsystem implements Runnable
 		{
 			msg = "Error configurating grab for session index " + sessionIndex;
 			NIVision.IMAQdxConfigureGrab(cameraSessions.get(sessionIndex));
-			
+
 			msg = "Error starting acquisition for session index " + sessionIndex;
 			NIVision.IMAQdxStartAcquisition(cameraSessions.get(sessionIndex));
-			
+
 			return true;
 		}
 		catch (Exception ex)
@@ -283,22 +303,30 @@ public class Camera extends Subsystem implements Runnable
 		}
 
 	}
-	
+
 	/**
-	 * Call to switch to next camera session when next camera frame is processed.
+	 * Call to switch to next camera session when next camera frame is
+	 * processed.
 	 */
 	public void switchSession()
 	{
 		desiredCamera = chooseNextCamera;
 	}
-	
+
 	@Override
 	public void run()
 	{
 		while (true)
 		{
-			processFrame();
-			Timer.delay(0.020);
+			try
+			{
+				processFrame();
+				Timer.delay(0.020);
+			}
+			catch (Exception e)
+			{
+				logException("Error Calling Process Frame", e);
+			}
 		}
 	}
 }
