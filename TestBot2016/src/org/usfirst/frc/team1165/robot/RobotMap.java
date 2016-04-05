@@ -26,7 +26,7 @@ public class RobotMap
     public static final int joystickPort0					= 0;
     
     public static final int PICKUP_BUTTON_NUMBER				= Gamepad.Button.LEFT_BUMP.getValue();
-    public static final int SHOOT_AT_HIGH_GOAL_BUTTON_NUMBER	= Gamepad.Button.RIGHT_BUMP.getValue();
+    public static final int SHOOT_AT_LOW_GOAL_BUTTON_NUMBER		= Gamepad.Button.RIGHT_BUMP.getValue();
     public static final int SERVO_BUTTON_NUMBER 				= Gamepad.Button.Y.getValue();
     public static final int WINCH_BUTTON						= Gamepad.Button.A.getValue();
     public static final int CANCEL_BUTTON						= Gamepad.Button.X.getValue();

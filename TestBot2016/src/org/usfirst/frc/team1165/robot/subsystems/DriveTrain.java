@@ -42,7 +42,7 @@ public class DriveTrain extends Subsystem
     {
     	twist = Robot.oi.leftStick.getTwist()*0.7524;
     	if(!Robot.oi.driveForward)
-    		twist = -twist;
+    		twist = -twist/2;
     	//robotDrive.arcadeDrive(Robot.oi.leftStick,Joystick.AxisType.kY.value,Robot.oi.leftStick,Joystick.AxisType.kZ.value,true);
     	robotDrive.arcadeDrive(Robot.oi.leftStick.getY(), twist);
     }

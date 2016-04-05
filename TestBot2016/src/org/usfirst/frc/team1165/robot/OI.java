@@ -17,6 +17,8 @@ import org.usfirst.frc.team1165.robot.commands.PositionRobotForShooting;
 import org.usfirst.frc.team1165.robot.commands.PushBallToShooter;
 import org.usfirst.frc.team1165.robot.commands.ResetEncoder;
 import org.usfirst.frc.team1165.robot.commands.RespoolWinch;
+import org.usfirst.frc.team1165.robot.commands.ShootAtHighGoal;
+import org.usfirst.frc.team1165.robot.commands.ShootAtLowGoal;
 import org.usfirst.frc.team1165.robot.commands.StartWinch;
 //import org.usfirst.frc.team1165.robot.commands.PickupBall;
 //import org.usfirst.frc.team1165.robot.commands.PushBallToShooter;
@@ -45,7 +47,7 @@ public class OI
 	public final Gamepad gamepad = new Gamepad(1);
 	public final JoystickButton servoButton 		= new JoystickButton(gamepad, RobotMap.SERVO_BUTTON_NUMBER);
 	public final JoystickButton pickupButton 		= new JoystickButton(gamepad,RobotMap.PICKUP_BUTTON_NUMBER);
-	public final JoystickButton pushOutButton 		= new JoystickButton(gamepad,RobotMap.SHOOT_AT_HIGH_GOAL_BUTTON_NUMBER);
+	public final JoystickButton lowGoal 			= new JoystickButton(gamepad,RobotMap.SHOOT_AT_LOW_GOAL_BUTTON_NUMBER);
 	public final JoystickButton climbTower 			= new JoystickButton(gamepad, RobotMap.WINCH_BUTTON);
 	public final JoystickButton cancelButton 		= new JoystickButton(gamepad,RobotMap.CANCEL_BUTTON);
 	public final JoystickButton alignWithHighGoal	= new JoystickButton(gamepad,RobotMap.ALIGN_WITH_HIGH_GOAL_BUTTON);
@@ -72,7 +74,7 @@ public class OI
 		respoolWinch.whenReleased(new StopWinch());
 		climbTower.whenPressed(new ClimbUpTower());
 		climbTower.whenReleased(new StopWinch());
-		//pushOutButton.whenPressed(new ShootAtHighGoal());
+		lowGoal.whenPressed(new ShootAtLowGoal());
 		pickupButton.whenPressed(new PickupBall());
 		servoButton.whenPressed(new PushBallToShooter(2));
 		flipDriveDirection.whenPressed(new FlipDriveDirection());
