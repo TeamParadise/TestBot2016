@@ -31,6 +31,8 @@ public class RobotMap
     public static final int WINCH_BUTTON						= Gamepad.Button.A.getValue();
     public static final int CANCEL_BUTTON						= Gamepad.Button.X.getValue();
     public static final int ALIGN_WITH_HIGH_GOAL_BUTTON			= Gamepad.Button.B.getValue();
+    public static final int SHOOT_AT_HIGH_GOAL_BUTTON_NUMBER	= Gamepad.Button.START.getValue();
+    
     
     public static final int ROTATE_TO_HEADING_TIMEOUT				= 3;
     public static final double DRIVE_SPEED 							=   0.4;		// Drive magnitude
