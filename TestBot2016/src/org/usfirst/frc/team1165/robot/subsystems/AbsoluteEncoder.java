@@ -18,7 +18,7 @@ public class AbsoluteEncoder extends Subsystem
     public double upperLimit;
     public double lowerLimit;
     public double terrainValue;
-    public double initialLowerLimit = 150;
+    public double initialLowerLimit = 75; //150;
     public double upperLimitDiff = 110; //distance from lowerLimit
     public double initalValueDiff = 55; //distance from LowerLimit
     public double terrainValueDiff = 30;
@@ -45,7 +45,7 @@ public class AbsoluteEncoder extends Subsystem
     }
     public boolean atUpperLimit()
     {
-    	if(DriverStation.getInstance().getMatchTime()<30 && DriverStation.getInstance().isOperatorControl())
+    	if(DriverStation.getInstance().getMatchTime()<20 && DriverStation.getInstance().isOperatorControl())
     	return encoder.get()>=upperLimit;
     	else
     		return encoder.get()>=initialValue;

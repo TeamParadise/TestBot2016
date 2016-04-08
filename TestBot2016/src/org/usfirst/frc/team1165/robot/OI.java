@@ -10,13 +10,15 @@ import org.usfirst.frc.team1165.robot.commands.DriveStraight;
 import org.usfirst.frc.team1165.robot.commands.DriveUnderLowBar;
 //import org.usfirst.frc.team1165.robot.commands.DriveUnderLowBar;
 //import org.usfirst.frc.team1165.robot.commands.DriveUnderPortcullis;
-import org.usfirst.frc.team1165.robot.commands.InvertDriveForward;
+import org.usfirst.frc.team1165.robot.commands.ReduceTwist;
 import org.usfirst.frc.team1165.robot.commands.FlipRobotFront;
 import org.usfirst.frc.team1165.robot.commands.PickupBall;
 import org.usfirst.frc.team1165.robot.commands.PositionRobotForShooting;
+//import org.usfirst.frc.team1165.robot.commands.PositionRobotForShooting;
 import org.usfirst.frc.team1165.robot.commands.PushBallToShooter;
 import org.usfirst.frc.team1165.robot.commands.ResetEncoder;
 import org.usfirst.frc.team1165.robot.commands.RespoolWinch;
+import org.usfirst.frc.team1165.robot.commands.SetLinearActuatorSetpoint;
 import org.usfirst.frc.team1165.robot.commands.ShootAtHighGoal;
 import org.usfirst.frc.team1165.robot.commands.ShootAtLowGoal;
 import org.usfirst.frc.team1165.robot.commands.StartWinch;
@@ -52,7 +54,7 @@ public class OI
 	public final JoystickButton climbTower 			= new JoystickButton(gamepad, RobotMap.WINCH_BUTTON);
 	public final JoystickButton cancelButton 		= new JoystickButton(gamepad,RobotMap.CANCEL_BUTTON);
 	public final JoystickButton alignWithHighGoal	= new JoystickButton(gamepad,RobotMap.ALIGN_WITH_HIGH_GOAL_BUTTON);
-	public final JoystickButton flipDriveDirection 	= new JoystickButton(leftStick,1);
+	public final JoystickButton reduceTwist 		= new JoystickButton(leftStick,1);
 	public final JoystickButton cameraButton 		= new JoystickButton(leftStick,2);
 	public final JoystickButton portcullisButton 	= new JoystickButton(leftStick,3);
 	public final JoystickButton flipFront 			= new JoystickButton(leftStick,7);
@@ -61,7 +63,7 @@ public class OI
 	public final JoystickButton terrainButton 		= new JoystickButton(leftStick,10);
 //	public final JoystickButton drawBridgeButton 	= new JoystickButton(leftStick,11);
 	public final JoystickButton rockWall 			= new JoystickButton(leftStick,12);
-	public boolean driveForward = true;
+	public boolean reduceTwistFlag = false;
 	public boolean enableSecondaryCamera = false;
 	public OI()
 	{
@@ -70,7 +72,7 @@ public class OI
 		//SmartDashboard.putData(new SetLinearActuatorSetpoint(RobotMap.linearActuatorSetpointKey));
 		SmartDashboard.putNumber("Push Time", 0.5);
 		SmartDashboard.putData(new ResetEncoder());
-		
+		SmartDashboard.putData(new SetLinearActuatorSetpoint("Linear Actuator Setpoint"));
 		respoolWinch.whenPressed(new RespoolWinch());
 		respoolWinch.whenReleased(new StopWinch());
 		climbTower.whenPressed(new ClimbUpTower());
@@ -79,8 +81,8 @@ public class OI
 		highGoal.whenPressed(new ShootAtHighGoal());
 		pickupButton.whenPressed(new PickupBall());
 		servoButton.whenPressed(new PushBallToShooter(2));
-		flipDriveDirection.whenPressed(new InvertDriveForward());
-		flipDriveDirection.whenReleased(new InvertDriveForward());
+		reduceTwist.whenPressed(new ReduceTwist());
+		reduceTwist.whenReleased(new ReduceTwist());
 		cameraButton.whenPressed(new SwitchSecondayCamera());
 		flipFront.whenPressed(new FlipRobotFront());
 		lowBarButton.whenPressed(new DriveUnderLowBar());

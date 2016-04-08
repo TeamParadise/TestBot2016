@@ -23,7 +23,7 @@ import org.usfirst.frc.team1165.robot.subsystems.LinearActuatorSensor;
 import org.usfirst.frc.team1165.robot.subsystems.ManipulationArm;
 import org.usfirst.frc.team1165.robot.subsystems.MoveServo;
 import org.usfirst.frc.team1165.robot.subsystems.Shooter;
-import org.usfirst.frc.team1165.robot.subsystems.VisionProcessing;
+//import org.usfirst.frc.team1165.robot.subsystems.VisionProcessing;
 import org.usfirst.frc.team1165.robot.subsystems.Winch;
 
 /**
@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot
 	public static final ManipulationArm arm = new ManipulationArm();
 	public static final AbsoluteEncoder absoluteEncoder = new AbsoluteEncoder();
 	public static final Gyroscope gyroscope = new Gyroscope();
-	public static final VisionProcessing vision = new VisionProcessing();
+	//public static final VisionProcessing vision = new VisionProcessing();
 	public static Camera camera;
 	/*
 	 * DO NOT INSTANTIATE CAMERA HERE.TWO CAMERAS REQUIRE OI TO BE INSTANTIATED
@@ -102,7 +102,7 @@ public class Robot extends IterativeRobot
 		if (autonomousCommand != null)
 		{
 			autonomousCommand.cancel();
-			Robot.oi.driveForward = true;
+			Robot.oi.reduceTwistFlag = true;
 		}
 	}
 

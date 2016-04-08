@@ -8,22 +8,18 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class InvertDriveForward extends Command
+public class ReduceTwist extends Command
 {
 
-	public InvertDriveForward()
+	public ReduceTwist()
 	{
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
-		Robot.oi.driveForward = !Robot.oi.driveForward;
-	/*	if (Robot.oi.driveForward)
-			Robot.camera.setCamera(RobotMap.tertiaryCameraName);
-		else
-			Robot.camera.setCamera(RobotMap.primaryCameraName);
-	*/}
+		Robot.oi.reduceTwistFlag = !Robot.oi.reduceTwistFlag;
+	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()

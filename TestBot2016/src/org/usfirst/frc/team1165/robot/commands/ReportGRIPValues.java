@@ -1,11 +1,12 @@
-package org.usfirst.frc.team1165.robot.commands;
+/*package org.usfirst.frc.team1165.robot.commands;
 
 import org.usfirst.frc.team1165.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class ReportGRIPValues extends Command {
+public class ReportGRIPValues extends Command
+{
 
     public ReportGRIPValues() 
     {
@@ -39,4 +40,4 @@ public class ReportGRIPValues extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
-}
+}*/

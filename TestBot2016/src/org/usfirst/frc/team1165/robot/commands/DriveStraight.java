@@ -22,6 +22,7 @@ public class DriveStraight extends Command
 	public DriveStraight(double forwardSpeed, double time) 
 	{
 		super(time);
+		//Drive Direction is flipped everywhere else
 		this.forwardSpeed = forwardSpeed;
 	}
 
@@ -39,7 +40,7 @@ public class DriveStraight extends Command
 	protected void execute()
 	{
 		double twistCorrection = Robot.gyroscope.getTwistCorrection();
-		boolean sign = Robot.oi.driveForward;
+		boolean sign = Robot.oi.reduceTwistFlag;
 		if(sign)
 		{
 		Robot.robotDrive.arcadeDrive(forwardSpeed, twistCorrection);

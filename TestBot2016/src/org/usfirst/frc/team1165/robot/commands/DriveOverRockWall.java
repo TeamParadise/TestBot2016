@@ -13,7 +13,7 @@ public class DriveOverRockWall extends CommandGroup
 		addSequential(new  SetLinearActuatorSetpoint(1.0),1.2);
 		addSequential(new PrepareForTerrain());
 		//addSequential(new RotateToHeading(RobotMap.ROTATE_SPEED,RobotMap.BRAKE_OFFSET,180,RobotMap.ROTATE_CREEP_SPEED));
-		addSequential(new DriveStraight(1, 2));
+		addSequential(new DriveStraight(-1, 2));
 		addSequential(new RotateToHeading(RobotMap.ROTATE_SPEED,RobotMap.BRAKE_OFFSET,180,RobotMap.ROTATE_CREEP_SPEED));
 		}
 }

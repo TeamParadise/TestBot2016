@@ -85,7 +85,11 @@ public class LinearActuatorPID extends PIDSubsystem
 		// yourPot.getAverageVoltage() / kYourMaxVoltage;
 		return Robot.linearActuatorSensor.getPosition();
 	}
-
+	@Override
+	public void setSetpoint(double setpoint) {
+		SmartDashboard.putNumber("Linear Actuator Setpoint", setpoint);
+	    super.setSetpoint(setpoint);
+	  }
 	/**
 	 * Sets the motor speed between -1 and 1.
 	 */
