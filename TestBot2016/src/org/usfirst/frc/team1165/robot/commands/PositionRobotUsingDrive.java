@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class PositionRobotForShooting extends Command
+public class PositionRobotUsingDrive extends Command
 {
 	public double centerFrameX = 232;
 	public double centerFrameY = 160;
@@ -23,10 +23,10 @@ public class PositionRobotForShooting extends Command
 	double x[];
 	double y[];
 
-	public PositionRobotForShooting()
+	public PositionRobotUsingDrive()
 	{
 		requires(Robot.robotDrive);
-		requires(Robot.linearActuator);
+		// requires(Robot.linearActuator);
 	}
 
 	// Called just before this Command runs the first time
@@ -105,20 +105,20 @@ public class PositionRobotForShooting extends Command
 		}
 		if (!alignY)
 		{
-			if (Math.abs(centerFrameY - currentY) >= offset && Robot.linearActuator.onTarget())
+			if (Math.abs(centerFrameY - currentY) >= offset)
 			{
-				currentActuatorPos = Robot.linearActuator.getPosition();
 				if (centerFrameY - currentY > 0)
 				{
-					Robot.linearActuator.setSetpoint(currentActuatorPos - actuatorPosIncrement);
+					Robot.robotDrive.arcadeDrive(0.55,0);
 				}
 				else if (centerFrameY - currentY < 0)
 				{
-					Robot.linearActuator.setSetpoint(currentActuatorPos + actuatorPosIncrement);
+					Robot.robotDrive.arcadeDrive(-0.55, 0);
 				}
 			}
 			else
 			{
+				Robot.robotDrive.arcadeDrive(0, 0);
 				alignY = true;
 			}
 		}
