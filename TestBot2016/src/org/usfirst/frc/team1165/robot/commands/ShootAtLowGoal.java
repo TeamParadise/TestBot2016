@@ -9,11 +9,11 @@ public class ShootAtLowGoal extends CommandGroup {
     
     public  ShootAtLowGoal() 
     {
-    	addSequential(new SetLinearActuatorSetpoint(4));
+    	//addSequential(new SetLinearActuatorSetpoint(4));
     	//addSequential(new PositionRobotForShooting());
     	addParallel(new PushBallToShooter(5));
-    	addSequential(new SpinShooterWheelsOut(-4000));//Gives right wheel negative rpm
+    	addSequential(new SpinShooterWheelsOut(-4500));//Gives right wheel negative rpm
     	//addSequential(new WaitCommand(0.5));
-    	addSequential(new SetLinearActuatorSetpoint(0.9));
+    	//addSequential(new SetLinearActuatorSetpoint(0.9));
     }
 }

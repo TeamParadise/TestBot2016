@@ -14,6 +14,7 @@ import org.usfirst.frc.team1165.robot.commands.ReduceTwist;
 import org.usfirst.frc.team1165.robot.commands.FlipRobotFront;
 import org.usfirst.frc.team1165.robot.commands.PickupBall;
 import org.usfirst.frc.team1165.robot.commands.PositionRobotForShooting;
+import org.usfirst.frc.team1165.robot.commands.PositionRobotForShootingRevised2;
 //import org.usfirst.frc.team1165.robot.commands.PositionRobotForShooting;
 import org.usfirst.frc.team1165.robot.commands.PushBallToShooter;
 import org.usfirst.frc.team1165.robot.commands.ResetEncoder;
@@ -69,6 +70,7 @@ public class OI
 	{
 		SmartDashboard.putNumber(RobotMap.linearActuatorSetpointKey, 2.50);
 		SmartDashboard.putBoolean(RobotMap.EnableRespoolWinch, false);
+		SmartDashboard.putBoolean("Enable Absolute Upper Limit", false);
 		//SmartDashboard.putData(new SetLinearActuatorSetpoint(RobotMap.linearActuatorSetpointKey));
 		SmartDashboard.putNumber("Push Time", 0.5);
 		SmartDashboard.putData(new ResetEncoder());
@@ -91,7 +93,7 @@ public class OI
 		cancelButton.whenPressed(new CancelCommand());
 		//portcullisButton.whenPressed(new DriveUnderPortcullis());
 		//drawbridgeButton.whenPressed(new DriveOverDrawbridge());
-		alignWithHighGoal.whenPressed(new PositionRobotForShooting());
+		alignWithHighGoal.whenPressed(new PositionRobotForShootingRevised2());
 	}
 	
 	public double getActuatorSpeed()

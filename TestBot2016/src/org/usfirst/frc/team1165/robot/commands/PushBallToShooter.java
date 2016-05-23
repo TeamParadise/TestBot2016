@@ -23,7 +23,7 @@ public class PushBallToShooter extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-    	if(Robot.shooter.rightWheel.getSpeed()<-4700)
+    	if(Robot.shooter.rightWheel.getSpeed()<-4000)
     	Robot.moveServo.push();
     	//Robot.moveServo.report();
     }

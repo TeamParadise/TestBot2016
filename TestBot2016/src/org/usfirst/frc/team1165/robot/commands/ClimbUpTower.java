@@ -10,7 +10,7 @@ public class ClimbUpTower extends CommandGroup
 
 	public ClimbUpTower()
 	{
-		addParallel(new DriveStraight(0.5283,20));
+		//addParallel(new DriveStraight(-0.5283,20));
 		addSequential(new StartWinch());
 	}
 }

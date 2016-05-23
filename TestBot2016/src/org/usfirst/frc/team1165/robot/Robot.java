@@ -64,7 +64,7 @@ public class Robot extends IterativeRobot
 	{
 		oi = new OI();
 		// instantiate the command used for the autonomous period
-		camera = new Camera(CameraMode.THREAD, RobotMap.primaryCameraName,RobotMap.secondaryCameraName,RobotMap.tertiaryCameraName);
+		camera = new Camera(CameraMode.THREAD, RobotMap.primaryCameraName,RobotMap.secondaryCameraName,RobotMap.tertiaryCameraName,RobotMap.quatenaryCameraName);
 		autoChooser = new SendableChooser();
 		autoChooser.addObject("Do Nothing", new DoNothing());
 		autoChooser.addObject("Breach Low Bar", new LowBarAutonomous());

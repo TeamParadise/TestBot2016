@@ -23,7 +23,7 @@ public class LinearActuatorPID extends PIDSubsystem
 	
 	// Minimum and maximum allowable set point positions:
 	private final static double minPosition = 0.5;
-	private final static double maxPosition = 5.75;
+	private final static double maxPosition = 5.25;
 	
 	// Minimum and maximum allowable speeds:
 	private final static double minSpeed = -0.85;
