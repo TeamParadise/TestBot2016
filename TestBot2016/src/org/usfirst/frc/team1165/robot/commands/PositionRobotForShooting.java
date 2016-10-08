@@ -33,7 +33,7 @@ public class PositionRobotForShooting extends Command
 	@Override
 	protected void initialize()
 	{
-		alignX = false;
+		/*alignX = false;
 		alignY = false;
 		try
 		{
@@ -56,7 +56,7 @@ public class PositionRobotForShooting extends Command
 		{
 			currentX = -1;
 			currentY = -1;
-		}
+		}*/
 		//Robot.linearActuator.setSetpoint(1.115);
 	}
 
@@ -64,7 +64,7 @@ public class PositionRobotForShooting extends Command
 	@Override
 	protected void execute()
 	{
-		try
+		/*try
 		{
 			table = NetworkTable.getTable("GRIP/myContoursReport");
 			x = table.getNumberArray("centerX");
@@ -127,14 +127,14 @@ public class PositionRobotForShooting extends Command
 		SmartDashboard.putNumber("Center Y", centerFrameY);
 		SmartDashboard.putNumber("Current Y", currentY);
 		SmartDashboard.putBoolean("Is Aligned X", alignX);
-		SmartDashboard.putBoolean("Is Aligned Y", alignY);
+		SmartDashboard.putBoolean("Is Aligned Y", alignY);*/
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished()
 	{
-		return alignX && alignY;
+		return true;//alignX && alignY;
 	}
 
 	// Called once after isFinished returns true

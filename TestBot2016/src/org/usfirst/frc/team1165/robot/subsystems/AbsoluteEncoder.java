@@ -18,9 +18,9 @@ public class AbsoluteEncoder extends Subsystem
     public double upperLimit;
     public double lowerLimit;
     public double terrainValue;
-    public double initialLowerLimit = 97; //150;
-    public double upperLimitDiff = 130; //distance from lowerLimit
-    public double initalValueDiff = 48; //distance from LowerLimit
+    public double initialLowerLimit = 210;
+    public double upperLimitDiff = 100; //distance from lowerLimit
+    public double initalValueDiff = 60; //distance from LowerLimit
     public double terrainValueDiff = 30;
     public AbsoluteEncoder()
     {
@@ -46,7 +46,7 @@ public class AbsoluteEncoder extends Subsystem
     public boolean atUpperLimit()
     {
     	if(SmartDashboard.getBoolean("Enable Absolute Upper Limit") || (DriverStation.getInstance().getMatchTime()<20 && DriverStation.getInstance().isOperatorControl()))
-    	return encoder.get()>=upperLimit;
+    		return encoder.get()>=upperLimit;
     	else
     		return encoder.get()>=initialValue;
     }

@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveTrain extends Subsystem
 {
+	// Uncommented by Kesav 10/08/16
 	public double centerFrameX = 232;
 	public double centerFrameY = 160;
 	public double currentX = 0;
@@ -29,7 +30,7 @@ public class DriveTrain extends Subsystem
 	double values[] = new double[0];
 	double x[];
 	double y[];
-
+	
 	public CANTalon canTalon4;
 	public CANTalon canTalon5;
 	public CANTalon canTalon6;
@@ -60,13 +61,15 @@ public class DriveTrain extends Subsystem
 	public void arcadeDrive()
 	{
 		twist = Robot.oi.leftStick.getTwist() * 0.7524;
-		if (Robot.oi.reduceTwistFlag) twist = twist * 0.826;
-		// robotDrive.arcadeDrive(Robot.oi.leftStick,Joystick.AxisType.kY.value,Robot.oi.leftStick,Joystick.AxisType.kZ.value,true);
+		if (Robot.oi.reduceTwistFlag) 
+			twist = twist * 0.826;
+		robotDrive.arcadeDrive(Robot.oi.leftStick.getY(), twist);
+		 //robotDrive.arcadeDrive(Robot.oi.leftStick,Joystick.AxisType.kY.value,Robot.oi.leftStick,Joystick.AxisType.kZ.value,true);
 
 		// Vision Stuff (Experimental)
+		// Uncommented by Kesav 10/08/16
 		try
 		{
-			robotDrive.arcadeDrive(Robot.oi.leftStick.getY(), twist);
 			table = NetworkTable.getTable("GRIP/myContoursReport");
 			x = table.getNumberArray("centerX");
 			y = table.getNumberArray("centerY");
@@ -84,6 +87,7 @@ public class DriveTrain extends Subsystem
 		}
 		catch (Exception e)
 		{
+			SmartDashboard.putBoolean("GRIP Crashed", true);
 			currentX = -1;
 			currentY = -1;
 		}

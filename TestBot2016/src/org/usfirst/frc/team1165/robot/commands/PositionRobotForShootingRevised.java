@@ -46,6 +46,7 @@ public class PositionRobotForShootingRevised extends Command
 	@Override
 	protected void execute()
 	{
+		/*
 		// If linear actuator is enabled and on target, turn it off:
 		if (Robot.linearActuator.getPIDController().isEnabled() && Robot.linearActuator.onTarget())
 		{
@@ -106,14 +107,14 @@ public class PositionRobotForShootingRevised extends Command
 		SmartDashboard.putNumber("Current Y", currentY);
 		SmartDashboard.putBoolean("Is Aligned X", xIsAligned);
 		SmartDashboard.putBoolean("Is Aligned Y", yIsAligned);
-		SmartDashboard.putBoolean("No Can Do", noCanDo);
+		SmartDashboard.putBoolean("No Can Do", noCanDo);*/
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished()
 	{
-		return noCanDo || (xIsAligned && yIsAligned);
+		return true;//noCanDo || (xIsAligned && yIsAligned);
 	}
 
 	// Called once after isFinished returns true

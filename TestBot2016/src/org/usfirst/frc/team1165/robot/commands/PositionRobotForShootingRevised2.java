@@ -86,6 +86,7 @@ public class PositionRobotForShootingRevised2 extends Command
 	protected void execute()
 
 	{
+		// Uncommented by Kesav 10/08/16
 		try
 		{
 			x = table.getNumberArray("centerX", (double[]) null);
@@ -180,7 +181,7 @@ public class PositionRobotForShootingRevised2 extends Command
 	@Override
 	protected boolean isFinished()
 	{
-		return noCanDo || (xIsAligned && yIsAligned && areaIsAligned);
+		return true;//noCanDo || (xIsAligned && yIsAligned && areaIsAligned);
 	}
 
 	// Called once after isFinished returns true
