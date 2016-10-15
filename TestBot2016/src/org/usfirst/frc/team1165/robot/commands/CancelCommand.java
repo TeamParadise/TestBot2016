@@ -14,10 +14,10 @@ public class CancelCommand extends Command
 	{
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.arm);
-		//requires(Robot.linearActuator);
+		requires(Robot.linearActuator);
 		requires(Robot.robotDrive);
 		requires(Robot.winch);
-		//requires(Robot.shooter);
+		requires(Robot.shooter);
 	}
 
 	// Called just before this Command runs the first time

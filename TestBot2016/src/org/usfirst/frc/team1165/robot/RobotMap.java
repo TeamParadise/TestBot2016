@@ -59,8 +59,8 @@ public class RobotMap
     public static final String linearActuatorSetpointKey	= "Linear Actuator Setpoint";
     public static final String EnableRespoolWinch			= "Enable Respool Winch";
     
-    public static final String primaryCameraName 			= "cam0";
-    public static final String secondaryCameraName 			= "cam1";
+    public static final String primaryCameraName 			= "cam1";
+    public static final String secondaryCameraName 			= "cam0";
     public static final String tertiaryCameraName 			= "cam2";
     public static final String quatenaryCameraName			= "cam3";
 }

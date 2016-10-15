@@ -12,8 +12,8 @@ public class MoveServo extends Subsystem {
     
 	public static Servo servo1;
 	public static Servo servo2;
-	public static double maxAngle = 70;
-	public static double minAngle = 0;
+	public static double retractAngle = 70;
+	public static double extendAngle = 0;
 	public static double operateSpeed = -2000;
 	public MoveServo()
 	{
@@ -31,30 +31,30 @@ public class MoveServo extends Subsystem {
     	boolean retract = Robot.shooter.rightWheel.getSpeed() > operateSpeed;
     	if (retract)
     	{
-    		servo1.setAngle(maxAngle);
-    		servo2.setAngle(minAngle);
+    		servo1.setAngle(retractAngle);
+    		servo2.setAngle(extendAngle);
     	}
     	return retract;
     }
     public void angle(Joystick stick)
     {
-    	double angle=Robot.shooter.rightWheel.getSpeed() <= operateSpeed && Robot.oi.servoButton.get() ? minAngle : maxAngle;
+    	double angle=Robot.shooter.rightWheel.getSpeed() <= operateSpeed && Robot.oi.servoButton.get() ? extendAngle : retractAngle;
        	servo1.setAngle(angle);
-       	angle = Robot.shooter.rightWheel.getSpeed() <= operateSpeed && Robot.oi.servoButton.get() ? maxAngle : minAngle;
+       	angle = Robot.shooter.rightWheel.getSpeed() <= operateSpeed && Robot.oi.servoButton.get() ? retractAngle : extendAngle;
        	servo2.setAngle(angle);
     }
     public void push()
     {
     	if (!protectServo()) 
     	{
-    		servo1.setAngle(minAngle);
-    		servo2.setAngle(maxAngle);
+    		servo1.setAngle(extendAngle);
+    		servo2.setAngle(retractAngle);
     	}
     }
     public void idle()
     {
-    	servo1.setAngle(maxAngle);
-    	servo2.setAngle(minAngle);
+    	servo1.setAngle(retractAngle);
+    	servo2.setAngle(extendAngle);
     }
     public double getAngle()
     {

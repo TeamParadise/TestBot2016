@@ -15,6 +15,7 @@ import org.usfirst.frc.team1165.robot.commands.FlipRobotFront;
 import org.usfirst.frc.team1165.robot.commands.PickupBall;
 import org.usfirst.frc.team1165.robot.commands.PositionRobotForShooting;
 import org.usfirst.frc.team1165.robot.commands.PositionRobotForShootingRevised2;
+import org.usfirst.frc.team1165.robot.commands.PrepareLinearActuatorForHighGoal;
 //import org.usfirst.frc.team1165.robot.commands.PositionRobotForShooting;
 import org.usfirst.frc.team1165.robot.commands.PushBallToShooter;
 import org.usfirst.frc.team1165.robot.commands.ResetEncoder;
@@ -93,7 +94,7 @@ public class OI
 		cancelButton.whenPressed(new CancelCommand());
 		//portcullisButton.whenPressed(new DriveUnderPortcullis());
 		//drawbridgeButton.whenPressed(new DriveOverDrawbridge());
-		alignWithHighGoal.whenPressed(new PositionRobotForShootingRevised2());
+		alignWithHighGoal.whenPressed(new PrepareLinearActuatorForHighGoal());
 	}
 	
 	public double getActuatorSpeed()

@@ -16,6 +16,7 @@ import com.ni.vision.NIVision.Image;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -235,6 +236,8 @@ public class Camera extends Subsystem implements Runnable
 					// We successfully started grabbing - update the current
 					// session index:
 					currentSessionIndex = tempSessionIndex;
+					//Print current Camera Name
+					SmartDashboard.putString("Camera Name", cameraNames.get(currentSessionIndex));
 				}
 				else
 				{

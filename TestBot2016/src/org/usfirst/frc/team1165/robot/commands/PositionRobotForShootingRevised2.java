@@ -12,11 +12,19 @@ public class PositionRobotForShootingRevised2 extends Command
 
 {
 
-	public double centerFrameX = 232;
+	public double centerFrameX = 182;
 
-	public double centerFrameY = 160;
+	public double centerFrameY = 188;
 	
-	public double targetArea = 10000;
+	public double targetArea = 3700;
+	
+	public double targetHeight = 70;
+	
+	public double targetWidth = 120;
+	
+	public double currentHeight = 0;
+
+	public double currentWidth = 0;
 
 	public double currentX = 0;
 
@@ -24,9 +32,9 @@ public class PositionRobotForShootingRevised2 extends Command
 	
 	public double currentArea = 0;
 
-	public double tolerance = 10;
+	public double tolerance = 5;
 	
-	public double areaTolerance = 500;
+	public double areaTolerance = 100;
 
 	private boolean xIsAligned = false;
 
@@ -41,6 +49,10 @@ public class PositionRobotForShootingRevised2 extends Command
 	private double y[];
 	
 	private double z[];
+	
+	private double height[];
+	
+	private double width[];
 
 	private boolean noCanDo;
 
@@ -66,6 +78,7 @@ public class PositionRobotForShootingRevised2 extends Command
 	protected void initialize()
 
 	{
+		Robot.linearActuator.setSetpoint(1.383);
 
 		xIsAligned = false;
 
@@ -86,7 +99,6 @@ public class PositionRobotForShootingRevised2 extends Command
 	protected void execute()
 
 	{
-		// Uncommented by Kesav 10/08/16
 		try
 		{
 			x = table.getNumberArray("centerX", (double[]) null);
@@ -94,6 +106,10 @@ public class PositionRobotForShootingRevised2 extends Command
 			y = table.getNumberArray("centerY", (double[]) null);
 
 			z = table.getNumberArray("area", (double[]) null);
+			
+			height = table.getNumberArray("height", (double[]) null);
+			
+			width = table.getNumberArray("width", (double[]) null);
 			
 			if (null == x || null == y || null == z || x.length == 0 || y.length == 0 || z.length == 0)
 			// suggested fix:
@@ -110,6 +126,8 @@ public class PositionRobotForShootingRevised2 extends Command
 				currentX = x[0];
 				currentY = y[0];
 				currentArea = z[0];
+				currentWidth = width[0];
+				currentHeight = height[0];
 			}
 
 			if (!noCanDo)
@@ -117,7 +135,7 @@ public class PositionRobotForShootingRevised2 extends Command
 				if (Math.abs(centerFrameX - currentX) >= tolerance)
 				{
 					// Direction might need to be configured on actual Robot
-					driveDirection = (centerFrameX - currentX) > 0 ? -0.45 : +0.45;
+					driveDirection = (centerFrameX - currentX) > 0 ? -0.6 : +0.6;
 					SmartDashboard.putNumber("Drive Direction", driveDirection);
 				}
 				else
@@ -130,24 +148,27 @@ public class PositionRobotForShootingRevised2 extends Command
 
 			if (!noCanDo)
 			{
-				if (Math.abs(centerFrameY - currentY) >= tolerance)
+				/*if (Math.abs(centerFrameY - currentY) >= tolerance)
 				{
 					// May need to tweak speeds
-					actuatorSpeed = (centerFrameY - currentY) > 0 ? -0.25 : +0.25;
+					actuatorSpeed = (centerFrameY - currentY) > 0 ? -0.235 : +0.235;
 					Robot.linearActuator.setSpeed(actuatorSpeed);
 				}
 				else
 				{
 					Robot.linearActuator.setSpeed(0);
 					yIsAligned = true;
-				}
+				}*/
+				Robot.linearActuator.setSetpoint(1.383);
 			}
 
 			if(!noCanDo)
 			{
+				if(currentHeight >= 0.5 * targetHeight && currentWidth >= 0.5 * targetWidth)
+				{
 				if(Math.abs(targetArea - currentArea) >= areaTolerance)
 				{
-					areaDriveDirection = (targetArea - currentArea) > 0 ? -0.525 : +0.525;
+					areaDriveDirection = (targetArea - currentArea) > 0 ? 0.6 : -0.6;
 					SmartDashboard.putNumber("Drive Forwards", areaDriveDirection);
 				}
 				else
@@ -156,6 +177,9 @@ public class PositionRobotForShootingRevised2 extends Command
 					areaDriveDirection = 0;
 					areaIsAligned = true;
 				}
+				}
+				else
+					areaDriveDirection = 0;
 			}
 			Robot.robotDrive.arcadeDrive(areaDriveDirection, driveDirection);
 			
@@ -181,7 +205,7 @@ public class PositionRobotForShootingRevised2 extends Command
 	@Override
 	protected boolean isFinished()
 	{
-		return true;//noCanDo || (xIsAligned && yIsAligned && areaIsAligned);
+		return noCanDo || (xIsAligned && yIsAligned && areaIsAligned);
 	}
 
 	// Called once after isFinished returns true
